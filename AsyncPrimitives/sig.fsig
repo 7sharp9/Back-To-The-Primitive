@@ -1,0 +1,44 @@
+#light
+
+
+
+namespace AsyncPrimitives
+  type AsyncAutoResetEventTPL =
+    class
+      new : unit -> AsyncAutoResetEventTPL
+      member Set : unit -> unit
+      member WaitAsync : unit -> System.Threading.Tasks.Task<bool>
+    end
+
+namespace AsyncPrimitives
+  type AsyncAutoResetEvent =
+    class
+      new : ?reusethread:bool -> AsyncAutoResetEvent
+      member Set : unit -> unit
+      member WaitAsync : unit -> Async<bool>
+    end
+
+namespace AsyncPrimitives
+  type AsyncManualResetEvent =
+    class
+      new : unit -> AsyncManualResetEvent
+      member Reset : unit -> unit
+      member Set : unit -> unit
+      member WaitAsync : unit -> Async<bool>
+    end
+  type asyncAutoResetEvent =
+    class
+      new : unit -> asyncAutoResetEvent
+      member Set : unit -> unit
+      member WaitAsync : unit -> Async<bool>
+    end
+
+module main
+val amre : AsyncPrimitives.AsyncManualResetEvent
+val x : Async<unit>
+val y : Async<unit>
+val z : Async<unit>
+val are : AsyncPrimitives.AsyncAutoResetEvent
+val wait1 : Async<unit>
+val wait2 : Async<unit>
+
